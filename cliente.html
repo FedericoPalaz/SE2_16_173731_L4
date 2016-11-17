@@ -4,21 +4,24 @@
        <!-- Here goes the metadata -->  
       <meta charset="utf-8">
       <title> HTML5 basics </title>
-      <script src="script/script.js"></script>
+      <script src="scripts/script.js"></script>
 </head>
 
 <body>
 	<h2>Cerca Emploeey in base all'ID:</h2>
-	<input type="text" id="id_search"/>
+	<input type="text" name="id_search"/>
 	<button>Cerca</button>
 	<button>Elimina</button>
 	<br/>
-	<button>Aggiungi nuovo Emploeey</button>
-	
-	ID:<input type="text" id="id_search"/>
-	Name:<input type="text" id="name"/>
-	Surname:<input type="text" id="surname"/>
-	Salary:<input type="text" id="salary"/>
-	<button>Invia</button>
+	<button onClick="Aggiungi_campi()">Aggiungi nuovo Emploeey</button>
+	<br/>
+	<form action="http://127.0.0.1:1337/" method="post" name="myform" id="myform" style="visibility:hidden">
+		ID:<input type="text" name="id"/><br/>
+		Name:<input type="text" name="name"/><br/>
+		Surname:<input type="text" name="surname"/><br/>
+		Level:<input type="text" name="level"/><br/>
+		Salary:<input type="text" name="salary"/><br/>
+		<button  type="button" onclick="submit()">Invia</button>
+	</form>
 </body>
 </html>
