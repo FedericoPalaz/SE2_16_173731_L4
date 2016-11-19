@@ -1,3 +1,46 @@
+//struct per gli emploeey
+function Emploeey(id,name,surname,level,salary)
+{
+	this.id=id;
+    this.name=name;
+    this.surname=surname;
+    this.level=level;
+    this.salary=salary;
+}
+
+//vettore di emploeey
+var vettore=new Array();
+vettore=[new Emploeey (1,"Fabio","Casati",4,3000),new Emploeey (2,"Mattia","Salnitri",5,4000)];
+
+//Aggiunge l'elemento nel vettore
+//input:id(può essere null),name,surname,level,salary
+//output:vettore aggiornato
+function Aggiungi_Emploeey(id,name,surname,level,salary)
+{
+	if(id==null){
+		var count=vettore.length;
+		var emploeey=new Emploeey((vettore[count-1].id+1),name,surname,level,salary);		
+		vettore[count]=emploeey;
+	}
+	else
+	{
+		var emploeey=new Emploeey(id,name,surname,level,salary);
+		var trovato=0,i;
+		for(i=0;i<vettore.length;i++)
+		{
+			if(id==vettore[i].id)
+			{
+				trovato=1;
+				vettore[i]=emploeey;
+			}
+		}
+		if(trovato==0)
+		{
+			vettore[i]=emploeey;
+		}
+	}
+}
+
 //express lib
 var express = require('express');
 //inspect
@@ -5,6 +48,9 @@ var util = require('util');
 
 //instantiate express
 var app = express();
+
+//for templates
+var bind = require('bind');
 
 //POST
 var bodyParser = require('body-parser');
@@ -20,15 +66,29 @@ app.use('/', function(request, response)
     var headers = {};
     //answer
     headers["Content-Type"] = "application/json";
-    response.writeHead(200, headers);
-
+    //response.writeHead(200, headers);
 
 	var text = '';
 
 	if ( typeof request.body !== 'undefined' && request.body)
 	{
+		
+		//Funzioni
+		if(request.body.id_search && request.body.radio)
+		{
+			//funzione di ricerca o elimina
+		}
+		else
+		{
+			//se i campi sono stati settati e non a null allora inserisco l'emploeey
+			if(request.body.name && request.body.surname && request.body.level && request.body.salary)
+			{
+				Aggiungi_Emploeey(parseInt(request.body.id),request.body.name,request.body.surname,parseInt(request.body.level),parseInt(request.body.salary));
+			}
+		}
+	
         //the content of the POST receiced
-		text = "request.body: " + util.inspect(request.body) + "\n";
+		text = "request body: " + util.inspect(request.body) + "\n";
 		
         //content of the post
 		var id,name,surname,level,salary;
@@ -40,37 +100,24 @@ app.use('/', function(request, response)
 		else 
 			id = "not defined";
 		
-		if ( typeof request.body.name !== 'undefined' && request.body.name)
-            
-    		name = request.body.name;
-		else 
-			name = "not defined";
-		if ( typeof request.body.surname !== 'undefined' && request.body.surname)
-            
-			surname = request.body.surname;
-		else 
-			surname = "not defined";
-		
-		if ( typeof request.body.level !== 'undefined' && request.body.level)
-            
-    		level = request.body.level;
-		else 
-			level = "not defined";
-		if ( typeof request.body.salary !== 'undefined' && request.body.salary)
-            
-    		salary = request.body.salary;
-		else 
-			salary = "not defined";
-			    	
-        text = text + "post received: " + id+','+name+','+surname+','+level+','+salary;
+		for(var i=0;i<vettore.length;i++)
+		{
+			text+=vettore[i].id + " ";
+		}
 	}
 	else
 	{
 		text = "body undefined";
 	}
 	
-    response.end(text);
-
+	bind.toFile('cliente.tpl', text,function() {
+        //write response
+        response.writeHead(200, {'Content-Type': 'text/html'});
+        response.end(text);
+    });
+    //
+    //response.end(callback);
+    
 });
 
 app.listen(app.get('port'), function() {

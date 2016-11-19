@@ -9,19 +9,22 @@
 
 <body>
 	<h2>Cerca Emploeey in base all'ID:</h2>
-	<input type="text" name="id_search"/>
-	<button>Cerca</button>
-	<button>Elimina</button>
+	<form action="http://127.0.0.1:1337/" method="post">
+		<input type="text" name="id_search" id="id_search"/>
+		<input type="radio" name="radio" value="cerca" onClick="Aggiungi_campi()" id="cerca"/>Cerca
+		<input type="radio" name="radio" value="elimina" id="elimina"/>Elimina
+		<button type="button" onclick="submit()" >Submit</button>
+	</form>
 	<br/>
 	<button onClick="Aggiungi_campi()">Aggiungi nuovo Emploeey</button>
 	<br/>
 	<form action="http://127.0.0.1:1337/" method="post" name="myform" id="myform" style="visibility:hidden">
-		ID:<input type="text" name="id"/><br/>
-		Name:<input type="text" name="name"/><br/>
-		Surname:<input type="text" name="surname"/><br/>
-		Level:<input type="text" name="level"/><br/>
-		Salary:<input type="text" name="salary"/><br/>
-		<button  type="button" onclick="submit()">Invia</button>
+		ID:<input type="text" name="id" id="id"/><br/>
+		Name:<input type="text" name="name" id="name"/><br/>
+		Surname:<input type="text" name="surname" id="surname"/><br/>
+		Level:<input type="text" name="level" id="level"/><br/>
+		Salary:<input type="text" name="salary" id="salary"/><br/>
+		<button  type="button" onclick="submit()" id="Invia">Invia</button>
 	</form>
 </body>
 </html>
