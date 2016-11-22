@@ -1,14 +1,4 @@
 /**
-<<<<<<< HEAD
- * @brief COstruzione della struct di employee
- * @param [in|out] type intero id dell'utente.
- * @param [in|out] type string name dell'utente.
- * @param [in|out] type string surname dell'utente.
- * @param [in|out] type int livello.
- * @param [in|out] type int salario.
- * @return Description of returned value.
- */
-=======
     * @Costruisco la struct per employee
     * @param [in|out] id type integer  è l'id dell'utente.
     * @param [in|out] name type string è il nome dell'utente
@@ -16,7 +6,6 @@
     * @param [in|out] level type integer è il livello dell'utente
     * @param [in|out] salary type integer è il salario dell'utente
     */
->>>>>>> test
 function Employee(id,name,surname,level,salary)
 {
 	this.id=id;
@@ -31,22 +20,12 @@ var vettore=new Array();
 vettore=[new Employee (1,"Fabio","Casati",4,3000),new Employee  (2,"Mattia","Salnitri",5,4000)];
 
 /**
-<<<<<<< HEAD
-    * @brief Aggiunge un utente al vettore
-     * @param [in|out] type intero id dell'utente.
-     * @param [in|out] type string name dell'utente.
-     * @param [in|out] type string surname dell'utente.
-     * @param [in|out] type int livello.
-     * @param [in|out] type int salario.
-    * @return Non ritorna nulla
-=======
     * @Aggiungo un employee nel vettore e se lo ho già lo sostituisco con i nuovi dati
     * @param [in|out] id type integer  è l'id dell'utente.
     * @param [in|out] name type string è il nome dell'utente
     * @param [in|out] surname type string è il cognome dell'utente
     * @param [in|out] level type integer è il livello dell'utente
     * @param [in|out] salary type integer è il salario dell'utente
->>>>>>> test
     */
 function Aggiungi_Employee(id,name,surname,level,salary)
 {
