@@ -1,4 +1,11 @@
-//struct per gli emploeey
+/**
+    * @Costruisco la struct per employee
+    * @param [in|out] id type integer  è l'id dell'utente.
+    * @param [in|out] name type string è il nome dell'utente
+    * @param [in|out] surname type string è il cognome dell'utente
+    * @param [in|out] level type integer è il livello dell'utente
+    * @param [in|out] salary type integer è il salario dell'utente
+    */
 function Employee(id,name,surname,level,salary)
 {
 	this.id=id;
@@ -12,9 +19,14 @@ function Employee(id,name,surname,level,salary)
 var vettore=new Array();
 vettore=[new Employee (1,"Fabio","Casati",4,3000),new Employee  (2,"Mattia","Salnitri",5,4000)];
 
-//Aggiunge l'elemento nel vettore
-//input:id(può essere null),name,surname,level,salary
-//output:vettore aggiornato
+/**
+    * @Aggiungo un employee nel vettore e se lo ho già lo sostituisco con i nuovi dati
+    * @param [in|out] id type integer  è l'id dell'utente.
+    * @param [in|out] name type string è il nome dell'utente
+    * @param [in|out] surname type string è il cognome dell'utente
+    * @param [in|out] level type integer è il livello dell'utente
+    * @param [in|out] salary type integer è il salario dell'utente
+    */
 function Aggiungi_Employee(id,name,surname,level,salary)
 {
 	if(id==null){
@@ -41,9 +53,11 @@ function Aggiungi_Employee(id,name,surname,level,salary)
 	}
 }
 
-//Delete
-//return 0 se non esiste
-//return 1 se esiste e viene cancellato
+/**
+    * @Cancello un employee utilizzando l'id
+    * @param [in|out] id type integer  è l'id dell'utente.
+    * @return 1 se è andato a buon fine e 0 se non 
+    */
 function Delete(id)
 {
     var impiegato=Search(id);
@@ -66,7 +80,11 @@ function Delete(id)
     }
 }
 
-//Search
+/**
+    * @Cerco un employee attraverso l'id
+    * @param [in|out] id type integer  è l'id dell'utente.
+    * @return se ho trovato l'utento lo resituisco altrimenti null
+    */
 function Search(id)
 {
 	var employee=null;
