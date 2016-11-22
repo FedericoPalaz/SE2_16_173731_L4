@@ -1,4 +1,12 @@
-//struct per gli emploeey
+/**
+ * @brief COstruzione della struct di employee
+ * @param [in|out] type intero id dell'utente.
+ * @param [in|out] type string name dell'utente.
+ * @param [in|out] type string surname dell'utente.
+ * @param [in|out] type int livello.
+ * @param [in|out] type int salario.
+ * @return Description of returned value.
+ */
 function Employee(id,name,surname,level,salary)
 {
 	this.id=id;
@@ -12,9 +20,15 @@ function Employee(id,name,surname,level,salary)
 var vettore=new Array();
 vettore=[new Employee (1,"Fabio","Casati",4,3000),new Employee  (2,"Mattia","Salnitri",5,4000)];
 
-//Aggiunge l'elemento nel vettore
-//input:id(può essere null),name,surname,level,salary
-//output:vettore aggiornato
+/**
+    * @brief Aggiunge un utente al vettore
+     * @param [in|out] type intero id dell'utente.
+     * @param [in|out] type string name dell'utente.
+     * @param [in|out] type string surname dell'utente.
+     * @param [in|out] type int livello.
+     * @param [in|out] type int salario.
+    * @return Non ritorna nulla
+    */
 function Aggiungi_Employee(id,name,surname,level,salary)
 {
 	if(id==null){
@@ -41,9 +55,11 @@ function Aggiungi_Employee(id,name,surname,level,salary)
 	}
 }
 
-//Delete
-//return 0 se non esiste
-//return 1 se esiste e viene cancellato
+/**
+ * @brief Cancello un utente attraverso il suo id.
+ * @param [in|out] type integer Id del mio utente.
+ * @return ritorna uno se è andato a buon fine altrimenti 0.
+ */
 function Delete(id)
 {
     var impiegato=Search(id);
@@ -66,7 +82,11 @@ function Delete(id)
     }
 }
 
-//Search
+/**
+ * @brief Cerca un utente attraverso l'id.
+ * @param [in|out] type integer Id del mio utente.
+ * @return ritorna l'utente cercato.
+ */
 function Search(id)
 {
 	var employee=null;
@@ -80,147 +100,7 @@ function Search(id)
 	return employee;
 }
 
-//express lib
-var express = require('express');
-//inspect
-var util = require('util');
-
-//instantiate express
-var app = express();
-
-//for templates
-var bind = require('bind');
-
-
-
-//POST
-var bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: false }));
-app.set('port', (process.env.PORT || 3500));
-app.use(express.static(__dirname+"/scripts"));
-
-app.get('/', function(req, res) 
-{   
-        //bind to the empty template
-    bind.toFile('tpl/cliente.tpl', 
-    {
-        
-    }, 
-    function(data) {
-        //write response
-        res.writeHead(200, {'Content-Type': 'text/html'});
-        res.end(data);
-    });
-});
-
-
-app.use('/Aggiungi', function(request, response) 
-{
-    //se i campi sono stati settati e non a null allora inserisco l'emploeey
-    if(request.body.name && request.body.surname && request.body.level && request.body.salary)
-    {
-        Aggiungi_Employee(parseInt(request.body.id),request.body.name,request.body.surname,parseInt(request.body.level),parseInt(request.body.salary));
-    } 
-    
-    //ritorno nella homepage
-    bind.toFile('tpl/cliente.tpl', 
-    {
-        //non invio nessuno dato
-    }, 
-    function(data) {
-        //write response
-        response.writeHead(200, {'Content-Type': 'text/html'});
-        response.end(data);
-    });
-});
-
-app.use('/searchordelete', function(request, response) 
-{
-
-    var impiegato=null;
-    //Controllo se nel body c'è qualcosa e anche ne radiobutton
-    if(request.body && request.body.radio)
-    {
-        if(request.body.radio=="cerca")
-        {
-            //Cerca un emploeey
-            impiegato=Search(parseInt(request.body.id_search));
-            if(impiegato==null)
-            {
-                   bind.toFile('tpl/cliente.tpl', 
-                    {
-                       esiste:"L'utente cercato non esiste",
-                       esiste_flag:false
-                    }, 
-                    function(data) {
-                        //write response
-                        response.writeHead(200, {'Content-Type': 'text/html'});
-                        response.end(data);
-                    }); 
-            }
-            else
-            {
-                    bind.toFile('tpl/cliente.tpl', 
-                    {
-                        id: impiegato.id,
-                        name: impiegato.name,
-                        surname: impiegato.surname,
-                        level: impiegato.level,
-                        salary: impiegato.salary,
-                        esiste:"esiste",
-                        esiste_flag:true
-                    }, 
-                    function(data) {
-                        //write response
-                        response.writeHead(200, {'Content-Type': 'text/html'});
-                        response.end(data);
-                    });
-            }          
-        }
-        else
-        {
-            if(Delete(parseInt(request.body.id_search))==1)
-            {
-                bind.toFile('tpl/cliente.tpl', 
-                {
-                   esiste:"Eliminazione avvenuta correttamente"
-
-                }, 
-                function(data) {
-                    //write response
-                    response.writeHead(200, {'Content-Type': 'text/html'});
-                    response.end(data);
-                });
-            }
-            else
-            {
-                bind.toFile('tpl/cliente.tpl', 
-                {
-                   esiste:"Eliminazione non avvenuta correttamente"
-
-                }, 
-                function(data) {
-                    //write response
-                    response.writeHead(200, {'Content-Type': 'text/html'});
-                    response.end(data);
-                });
-            }
-        }
-    }
-    else{
-           bind.toFile('tpl/cliente.tpl', 
-            {
-               esiste:"ciao2"
-            }, 
-            function(data) {
-                //write response
-                response.writeHead(200, {'Content-Type': 'text/html'});
-                response.end(data);
-            }); 
-    }    
-});
-
-
-app.listen(app.get('port'), function() {
-  console.log('Node app is running on port', app.get('port'));
-});
+exports.Employee=Employee;
+exports.Delete=Delete;
+exports.Aggiungi_Employee=Aggiungi_Employee;
+exports.Search=Search;
