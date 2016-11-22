@@ -1,4 +1,5 @@
 /**
+<<<<<<< HEAD
  * @brief COstruzione della struct di employee
  * @param [in|out] type intero id dell'utente.
  * @param [in|out] type string name dell'utente.
@@ -7,6 +8,15 @@
  * @param [in|out] type int salario.
  * @return Description of returned value.
  */
+=======
+    * @Costruisco la struct per employee
+    * @param [in|out] id type integer  è l'id dell'utente.
+    * @param [in|out] name type string è il nome dell'utente
+    * @param [in|out] surname type string è il cognome dell'utente
+    * @param [in|out] level type integer è il livello dell'utente
+    * @param [in|out] salary type integer è il salario dell'utente
+    */
+>>>>>>> test
 function Employee(id,name,surname,level,salary)
 {
 	this.id=id;
@@ -21,6 +31,7 @@ var vettore=new Array();
 vettore=[new Employee (1,"Fabio","Casati",4,3000),new Employee  (2,"Mattia","Salnitri",5,4000)];
 
 /**
+<<<<<<< HEAD
     * @brief Aggiunge un utente al vettore
      * @param [in|out] type intero id dell'utente.
      * @param [in|out] type string name dell'utente.
@@ -28,6 +39,14 @@ vettore=[new Employee (1,"Fabio","Casati",4,3000),new Employee  (2,"Mattia","Sal
      * @param [in|out] type int livello.
      * @param [in|out] type int salario.
     * @return Non ritorna nulla
+=======
+    * @Aggiungo un employee nel vettore e se lo ho già lo sostituisco con i nuovi dati
+    * @param [in|out] id type integer  è l'id dell'utente.
+    * @param [in|out] name type string è il nome dell'utente
+    * @param [in|out] surname type string è il cognome dell'utente
+    * @param [in|out] level type integer è il livello dell'utente
+    * @param [in|out] salary type integer è il salario dell'utente
+>>>>>>> test
     */
 function Aggiungi_Employee(id,name,surname,level,salary)
 {
@@ -56,10 +75,12 @@ function Aggiungi_Employee(id,name,surname,level,salary)
 }
 
 /**
- * @brief Cancello un utente attraverso il suo id.
- * @param [in|out] type integer Id del mio utente.
- * @return ritorna uno se è andato a buon fine altrimenti 0.
- */
+
+    * @Cancello un employee utilizzando l'id
+    * @param [in|out] id type integer  è l'id dell'utente.
+    * @return 1 se è andato a buon fine e 0 se non 
+    */
+
 function Delete(id)
 {
     var impiegato=Search(id);
@@ -83,10 +104,11 @@ function Delete(id)
 }
 
 /**
- * @brief Cerca un utente attraverso l'id.
- * @param [in|out] type integer Id del mio utente.
- * @return ritorna l'utente cercato.
- */
+    * @Cerco un employee attraverso l'id
+    * @param [in|out] id type integer  è l'id dell'utente.
+    * @return se ho trovato l'utento lo resituisco altrimenti null
+    */
+
 function Search(id)
 {
 	var employee=null;
@@ -100,7 +122,10 @@ function Search(id)
 	return employee;
 }
 
+
+//esporto tutte le funzioni
 exports.Employee=Employee;
+exports.Search=Search;
 exports.Delete=Delete;
 exports.Aggiungi_Employee=Aggiungi_Employee;
-exports.Search=Search;
+
