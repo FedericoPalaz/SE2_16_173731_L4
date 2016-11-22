@@ -18,7 +18,7 @@
 	<br/>
 	<button onClick="Aggiungi_campi()">Aggiungi nuovo Emploeey</button>
 	<br/>
-    (:esiste:)
+    <p (:if[esiste_flag] ~[:then ~ style="visibility:hidden" :][:else ~ style="visibility:visible":]:)>(:esiste:)</p>
 	<form  method="post" action="/Aggiungi" name="myform" id="myform" (:if[esiste_flag] ~[:then ~ style="visibility:visible" :][:else ~ style="visibility:hidden":]:)>
 
 		ID:<input type="text" name="id" id="id" value=(:id:) /><br/> 		
